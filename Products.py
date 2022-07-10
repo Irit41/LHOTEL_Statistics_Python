@@ -93,11 +93,14 @@ def product_sales():
     return result_rows
 
 
-def Product_Purchase_By_Code(product_code):
-    product_list = []
+def Product_Purchase_By_Name(product_name):
+    product_name = product_name.lower()
+    all_product_sales = product_sales();
+    result_dict = {}
+    for index in range(len(all_product_sales)):
+        temp_dict = all_product_sales[index]
+        if temp_dict["Description"].lower() == product_name:
+            result_dict = {x: [y, ""] for (x, y) in temp_dict.items()}
+            break
 
-    cursor = Connect_to_SQL_Server()
-    for row in cursor.execute("exec ProductPurchaseByCode " + product_code):
-        product_list.append(row)
-
-    print(product_list)
+    print_df(result_dict) if result_dict else print('No product matching this name was found in our data bases')

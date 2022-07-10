@@ -7,21 +7,27 @@ def Rooms_Income():
     sum_total = 0
     for row in cursor.execute("Calu_Rooms_Income"):
         sum_total += row[0]
-    print(f"Rooms_Income: {sum_total}")
+    return sum_total
 
 
 def Purchase_Of_Goods_Expenses():
     sum_total = 0
     for row in cursor.execute("Expenses"):
         sum_total += row[0]
-    print(f"Purchase_Of_Goods_Expenses: {sum_total}")
+    return sum_total
 
 
 def Products_Income():
     sum_total = 0
     for row in cursor.execute("Calu_Products_Income"):
-        if row[2] == 0:
-            sum_total += row[0] * row[1]
+        if row[2] != 0:
+            percent = (row[1] * row[2]) / 100
+            new_price = row[1] - percent
         else:
-            sum_total += ((row[1] * row[2]) / 100) * row[0]
-    print(f"Products_Income: {sum_total}")
+            new_price = row[1]
+        sum_total += new_price * row[0]
+    return sum_total
+
+
+
+

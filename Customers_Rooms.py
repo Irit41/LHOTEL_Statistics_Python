@@ -1,8 +1,5 @@
 import math
 
-
-
-
 from SQL_Connection import Connect_to_SQL_Server
 from matplotlib import pyplot as plt
 from collections import Counter, OrderedDict

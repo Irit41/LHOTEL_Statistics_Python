@@ -10,12 +10,12 @@ def main():
     # Month_with_the_most_reservation()
     # Products.get_product_sales()
     # Products.most_products_sales_in_each_category()
-    product_name = input("Product Purchase By Name: ")
-    Products.Product_Purchase_By_Name(product_name)
-  #  Financial.Rooms_Income()
-   #  Financial.Purchase_Of_Goods_Expenses()
-   #  Financial.Products_Income()
-
+    # product_name = input("Product Purchase By Name: ")
+    # Products.Product_Purchase_By_Name(product_name)
+    # print(Financial.Rooms_Income())
+    # print(Financial.Purchase_Of_Goods_Expenses())
+    # print(Financial.Products_Income())
+    Financial.incomes_vs_expenses_graph()
     # Number_of_tasks_per_month()
     # Month_with_the_most_reservation()
 

@@ -1,9 +1,13 @@
 import pandas as pd
 import pymssql
-from SQL_Connection import Connect_to_SQL_Server
+
 
 
 def sort_by_category(e):
+    '''
+    פונקצית עזר לטובת מיון לפי קטגוריה
+
+    '''
     return e['Category']
 
 
@@ -70,6 +74,10 @@ def print_df(data):
 
 
 def get_product_sales():
+    '''
+    פונקציה להצגת נתוני כל המכירות במבנה טבלאי
+
+    '''
     product_sales_table = product_sales()
     print_df(product_sales_table)
 
@@ -94,6 +102,11 @@ def product_sales():
 
 
 def Product_Purchase_By_Name(product_name):
+    """
+      הפונצקיה מציגה את נתוני המכירות של מוצר לבקשתו של המשתמש ע"י מעבר על טבלת כל המכירות , יצירת מילון זמני עם פרטי המוצר הנבחר ושליחתו להצגה
+    :param product_name: מחרוזת קלט מהמשתמש
+
+    """
     product_name = product_name.lower()
     all_product_sales = product_sales();
     result_dict = {}

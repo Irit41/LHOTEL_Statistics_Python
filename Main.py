@@ -6,7 +6,7 @@ import Financial
 
 
 def main():
-    # Number_of_tasks_per_month()
+    Number_of_tasks_per_month()
     # Month_with_the_most_reservation()
     # Products.get_product_sales()
     # Products.most_products_sales_in_each_category()
@@ -15,7 +15,7 @@ def main():
     # print(Financial.Rooms_Income())
     # print(Financial.Purchase_Of_Goods_Expenses())
     # print(Financial.Products_Income())
-    Financial.incomes_vs_expenses_graph()
+    # Financial.incomes_vs_expenses_graph()
     # Number_of_tasks_per_month()
     # Month_with_the_most_reservation()
 

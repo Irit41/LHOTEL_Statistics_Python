@@ -28,5 +28,3 @@ def Connect_to_SQL_Server_Pymssql():
     return cursor
 
 
-if __name__ == '__main__':
-    Connect_to_SQL_Server()

@@ -1,14 +1,17 @@
 import sys
 
 import pandas as pd
-import pymssql
+import Main
+from SQL_Connection import Connect_to_SQL_Server_Pymssql
+
+cursor = Connect_to_SQL_Server_Pymssql()
 
 
 def menu():
-    print("************Products***********")
-    print()
-
-    choice = input("""
+    while True:
+        print("------------------------------------------------------------------------------------")
+        print("-----------------------------------Products-----------------------------------------")
+        choice = input("""
                       A: All product sales
                       B: Best-selling products from each category
                       C: Search product purchase by name
@@ -16,17 +19,17 @@ def menu():
 
                       Please enter your choice: """)
 
-    if choice == "A" or choice == "a":
-        get_product_sales()
-    elif choice == "B" or choice == "b":
-        most_products_sales_in_each_category()
-        if choice == "C" or choice == "c":
+        if choice == "A" or choice == "a":
+            get_product_sales()
+        elif choice == "B" or choice == "b":
+            most_products_sales_in_each_category()
+        elif choice == "C" or choice == "c":
             Product_Purchase_By_Name()
         elif choice == "Q" or choice == "q":
-            exit()
-    else:
-        print("Error, Please try again")
-        menu()
+            Main.menu()
+        else:
+            print("Error, Please try again")
+            menu()
 
 
 def sort_by_category(e):
@@ -118,9 +121,6 @@ def product_sales():
     הפונצקיה יוצרת חיבור עם מסד הנתונים ויוצרת רשימה של מילונים מערך המוחזר מפרוצדורה להצגת כל המכירות
     :return:result_rows :   רשימה של מילונים
     """
-    conn = pymssql.connect(server='sql5108.site4now.net',
-                           user='db_a79b5b_proj13_admin', password='XXNEA6q6VbvATG6g', database='db_a79b5b_proj13')
-    cursor = conn.cursor(as_dict=True)
 
     cursor.callproc('SumPerProduct')
     result_rows = [row for row in cursor]
@@ -139,7 +139,6 @@ def Product_Purchase_By_Name():
 
     """
     product_name = input("Product Purchase By Name: ").lower()
-    # product_name = product_name.lower()
     all_product_sales = product_sales();
     result_dict = {}
     for index in range(len(all_product_sales)):

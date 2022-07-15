@@ -1,4 +1,5 @@
-from Customers_Rooms import Amount_of_room_reservations_per_month
+
+from Customers_Rooms import Month_with_the_most_reservation
 from Tasks import Number_of_tasks_per_month
 
 import Products
@@ -6,34 +7,29 @@ import Financial
 
 
 def menu():
-    while (True):
-        print("************Welcome**************")
-        print()
-        choice = ''
-        try:
-            choice = input("""
+    while True:
+        print("------------------------------------------------------------------------------------")
+        print("-----------------------------------Welcome-----------------------------------------")
+        choice = input("""
                       A: Finance Department
-                      B: Room reservations department
+                      B: Month with the most reservation
                       C: Products Department
-                      D: Room service department
+                      D: Amount of room service requests
                       Q: Logout
 
                       Please enter your choice: """)
-        except:
-            print('Wrong input. Please enter a number ...')
-        if choice == "A" or choice == "a":
 
-            Financial.main()
+        if choice == "A" or choice == "a":
+            Financial.menu()
         elif choice == "B" or choice == "b":
-            Amount_of_room_reservations_per_month()
-        if choice == "C" or choice == "c":
+            Month_with_the_most_reservation()
+        elif choice == "C" or choice == "c":
             Products.main()
         elif choice == "D" or choice == "d":
             Number_of_tasks_per_month()
         elif choice == "Q" or choice == "q":
             exit()
         else:
-            # print("You must only select either A or B")
             print("Error,Please try again")
             menu()
 

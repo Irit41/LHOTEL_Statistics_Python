@@ -1,6 +1,4 @@
-
-
-from Products import print_df
+import Main
 from SQL_Connection import Connect_to_SQL_Server
 import pandas as pd
 import matplotlib.pyplot as mp
@@ -8,12 +6,12 @@ import matplotlib.pyplot as mp
 cursor = Connect_to_SQL_Server()
 
 
-
 def menu():
-    print("************Financial************")
-    print()
+    while True:
+        print("-------------------------------------------------------------------------------------")
+        print("-----------------------------------Financial-----------------------------------------")
 
-    choice = input("""
+        choice = input("""
                       A: Rooms income
                       B: Products income
                       C: Purchase of goods expenses
@@ -22,25 +20,25 @@ def menu():
 
                       Please enter your choice: """)
 
-    if choice == "A" or choice == "a":
-        print("Total rooms income : ", Rooms_Income())
-    elif choice == "B" or choice == "b":
-        print("Total products income : ", Products_Income())
-        if choice == "C" or choice == "c":
+        if choice == "A" or choice == "a":
+            print("Total rooms income : ", Rooms_Income())
+        elif choice == "B" or choice == "b":
+            print("Total products income : ", Products_Income())
+        elif choice == "C" or choice == "c":
             print("Total purchase of goods expenses : ", Purchase_Of_Goods_Expenses())
-
         elif choice == "D" or choice == "d":
             incomes_vs_expenses_graph()
-    elif choice == "Q" or choice == "q":
-        exit()
-    else:
-        print("Error, Please try again")
-        menu()
+        elif choice == "Q" or choice == "q":
+            Main.menu()
+        else:
+            print("Error,Please try again")
+            menu()
 
 
 def incomes_vs_expenses_graph():
     """
-    הפונקציה מציגה גרף המתאר השוואה בין הכנסות להוצאות של הבית מלון ע"י מיזוג רשימות המכילות הוצאות הכנסות ומחלקות למילון ויצירת גרף מנתוניו
+    הפונקציה מציגה גרף המתאר השוואה בין הכנסות להוצאות של הבית מלון ע"י מיזוג רשימות המכילות הוצאות הכנסות ומחלקות
+    למילון ויצירת גרף מנתוניו
 
     """
     incomes = [Rooms_Income(), Products_Income()]
@@ -49,14 +47,12 @@ def incomes_vs_expenses_graph():
     incomes_vs_expenses_dict = {"Incomes": incomes, "Expenses": expenses, "Sections": sections}
     data = pd.DataFrame(incomes_vs_expenses_dict)
     df = pd.DataFrame(data, columns=["Sections", "Incomes", "Expenses"])
-    print_df(df)
+
     df['Incomes'] = pd.to_numeric(df['Incomes'])
     df['Expenses'] = pd.to_numeric(df['Expenses'])
-    # print(df.dtypes)
-    # plot the dataframe
+
     df.plot(x="Sections", y=["Incomes", "Expenses"], kind="bar", figsize=(9, 8))
-    #
-    #  print bar graph
+
     mp.show()
 
 
@@ -101,7 +97,6 @@ def Products_Income():
             new_price = row[1]
         sum_total += new_price * row[0]
     return sum_total
-
 
 def main():
     menu()

@@ -1,6 +1,32 @@
+import sys
+
 import pandas as pd
 import pymssql
 
+
+def menu():
+    print("************Products***********")
+    print()
+
+    choice = input("""
+                      A: All product sales
+                      B: Best-selling products from each category
+                      C: Search product purchase by name
+                      Q: Logout
+
+                      Please enter your choice: """)
+
+    if choice == "A" or choice == "a":
+        get_product_sales()
+    elif choice == "B" or choice == "b":
+        most_products_sales_in_each_category()
+        if choice == "C" or choice == "c":
+            Product_Purchase_By_Name()
+        elif choice == "Q" or choice == "q":
+            exit()
+    else:
+        print("Error, Please try again")
+        menu()
 
 
 def sort_by_category(e):
@@ -12,6 +38,11 @@ def sort_by_category(e):
 
 
 def create_list_of_categories(product_sales_table):
+    """
+   הפונקציה יוצרת רשימה ללא כפילויות של קטגוריות מנתוני הפרמטר שקיבלה ומחזירה אותה
+    :param product_sales_table: רשימה של מילונים
+    :return: רשימה של מחרוזות (קטגוריות)
+    """
     category_list = []
     for temp_dict in product_sales_table:
         category_list.append(temp_dict['Category'])  # הכנסה לרשימה את הקטגוריות
@@ -22,12 +53,12 @@ def create_list_of_categories(product_sales_table):
 
 def display_table_of_best_sellers(dictionary_of_best_sellers, category_list):
     """
-
+     הפונקציה יוצרת מילון המורכב מקטגוריות מוצרים והכמות שלהם
+        ושולחת את המילון שנוצר להדפסה
     :param dictionary_of_best_sellers:   מילון של המוצרים הנמכרים ביותר מכל קטגוריה
 
     :param category_list: רשימת קטגוריות
-    הפונקציה יוצרת מילון המורכב מקטגוריות מוצרים והכמות שלהם
-    ושולחת את המילון שנוצר להדפסה
+
     """
 
     products = []
@@ -101,13 +132,14 @@ def product_sales():
     return result_rows
 
 
-def Product_Purchase_By_Name(product_name):
+def Product_Purchase_By_Name():
     """
       הפונצקיה מציגה את נתוני המכירות של מוצר לבקשתו של המשתמש ע"י מעבר על טבלת כל המכירות , יצירת מילון זמני עם פרטי המוצר הנבחר ושליחתו להצגה
     :param product_name: מחרוזת קלט מהמשתמש
 
     """
-    product_name = product_name.lower()
+    product_name = input("Product Purchase By Name: ").lower()
+    # product_name = product_name.lower()
     all_product_sales = product_sales();
     result_dict = {}
     for index in range(len(all_product_sales)):
@@ -117,3 +149,11 @@ def Product_Purchase_By_Name(product_name):
             break
 
     print_df(result_dict) if result_dict else print('No product matching this name was found in our data bases')
+
+
+def main():
+    menu()
+
+
+if __name__ == '__main__':
+    main()

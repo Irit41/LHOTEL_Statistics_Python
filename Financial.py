@@ -20,15 +20,15 @@ def menu():
 
                       Please enter your choice: """)
 
-        if choice == "A" or choice == "a":
+        if choice.upper() == "A":
             print("Total rooms income : ", Rooms_Income())
-        elif choice == "B" or choice == "b":
+        elif choice.upper() == "B":
             print("Total products income : ", Products_Income())
-        elif choice == "C" or choice == "c":
+        elif choice.upper() == "C":
             print("Total purchase of goods expenses : ", Purchase_Of_Goods_Expenses())
-        elif choice == "D" or choice == "d":
+        elif choice.upper() == "D":
             incomes_vs_expenses_graph()
-        elif choice == "Q" or choice == "q":
+        elif choice.upper() == "Q":
             Main.menu()
         else:
             print("Error,Please try again")
@@ -97,6 +97,7 @@ def Products_Income():
             new_price = row[1]
         sum_total += new_price * row[0]
     return sum_total
+
 
 def main():
     menu()

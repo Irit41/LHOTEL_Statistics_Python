@@ -19,13 +19,13 @@ def menu():
 
                       Please enter your choice: """)
 
-        if choice == "A" or choice == "a":
+        if choice.upper() == "A":
             get_product_sales()
-        elif choice == "B" or choice == "b":
+        elif choice.upper() == "B":
             most_products_sales_in_each_category()
-        elif choice == "C" or choice == "c":
+        elif choice.upper() == "C":
             Product_Purchase_By_Name()
-        elif choice == "Q" or choice == "q":
+        elif choice.upper() == "Q":
             Main.menu()
         else:
             print("Error, Please try again")
@@ -35,7 +35,6 @@ def menu():
 def sort_by_category(e):
     '''
     פונקצית עזר לטובת מיון לפי קטגוריה
-
     '''
     return e['Category']
 
@@ -76,7 +75,7 @@ def display_table_of_best_sellers(dictionary_of_best_sellers, category_list):
 
 def most_products_sales_in_each_category():
     '''
-    הפונצקיה מבצעת השמה של טבלת כל המכירות למשתנה , מבצעת השמה לרשימה רק את הקטגוריות הנמצאות בטבלה תיוצרת מילון שהמפתחות שלו הם הרשימה הנ"ל וערכיהם מאותחלים באפס
+    הפונצקיה מבצעת השמה של טבלת כל המכירות למשתנה , מבצעת השמה לרשימה רק את הקטגוריות הנמצאות בטבלה ,יוצרת מילון שהמפתחות שלו הם הרשימה הנ"ל וערכיהם מאותחלים באפס
     המילון המעודכן לאחר ביצוע הלולאה נשלח להצגה
 
     '''
@@ -96,7 +95,6 @@ def most_products_sales_in_each_category():
 
 def print_df(data):
     '''
-
     :param data: מידע במבנה של מילון
     הפונקציה יוצרת מסגרת תצוגה מהפרמטר שהתקבל ומדפיסה אותה
     '''
@@ -110,7 +108,6 @@ def print_df(data):
 def get_product_sales():
     '''
     פונקציה להצגת נתוני כל המכירות במבנה טבלאי
-
     '''
     product_sales_table = product_sales()
     print_df(product_sales_table)

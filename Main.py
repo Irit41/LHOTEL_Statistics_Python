@@ -19,15 +19,15 @@ def menu():
 
                       Please enter your choice: """)
 
-        if choice == "A" or choice == "a":
+        if choice.upper() == "A":
             Financial.menu()
-        elif choice == "B" or choice == "b":
+        elif choice.upper() == "B":
             Month_with_the_most_reservation()
-        elif choice == "C" or choice == "c":
+        elif choice.upper() == "C":
             Products.main()
-        elif choice == "D" or choice == "d":
+        elif choice.upper() == "D":
             Number_of_tasks_per_month()
-        elif choice == "Q" or choice == "q":
+        elif choice.upper() == "Q":
             exit()
         else:
             print("Error,Please try again")
